@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="uniqueIdProcessor" class="griffio.beans.processor.UniqueProcessor">
+        <constructor-arg ref="guidSupplier"/>
+    </bean>
+
+    <bean id="daySupplier" class="griffio.beans.day.DaySupplier"/>
+
+    <bean id="localDateProvider" class="griffio.beans.inject.LocalDateSupplier" >
+        <constructor-arg ref="systemDate"/>
+    </bean>
+
+    <bean id="dayOfWeekProcessor" class="griffio.beans.processor.DayOfWeekProcessor">
+        <constructor-arg ref="localDateProvider"/>
+        <constructor-arg ref="daySupplier"/>
+    </bean>
+
+    <bean id="guidSupplier" class="griffio.beans.unique.GuidSupplier"/>
+
+    <bean id="sequenceSupplier" class="griffio.beans.unique.SequenceSupplier"/>
+
+    <bean id="randomSupplier" class="griffio.beans.unique.RandomSupplier"/>
+
+    <bean id="currentLocalDate" class="org.joda.time.LocalDate" scope="prototype" factory-method="parse">
+        <constructor-arg value="2014-02-20"/>
+    </bean>
+
+    <bean id="randomLocalDate" class="org.joda.time.LocalDate" scope="prototype" factory-method="parse">
+        <constructor-arg value="2018-03-11"/>
+    </bean>
+
+    <bean id="systemDate" class="org.joda.time.LocalDate" scope="prototype" factory-method="parse">
+        <constructor-arg value="2008-01-21"/>
+    </bean>
+
+</beans>
