@@ -58,16 +58,6 @@
 
     </dependencies>
 
-    <repositories>
-        <repository>
-            <id>io.spring.repo.maven.release</id>
-            <url>http://artifactory.orbitbenefits.capita/artifactory/repo</url>
-            <snapshots>
-                <enabled>false</enabled>
-            </snapshots>
-        </repository>
-    </repositories>
-
     <dependencyManagement>
         <dependencies>
             <dependency>
